@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY FAVORITES | MYTHOS</title>
+    <link rel="icon" type="image/svg+xml" href="image/icons/logo.svg">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/favorites.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js" defer></script>
+    <script src="js/favorites.js" defer></script>
+    <script src="js/common.js" defer></script>
+</head>
+
+<body>
+
+    <div id="common-header"></div>
+
+
+    <main class="favorites-main">
+        <div class="favorites-heading">
+            <span>YOUR COLLECTION</span>
+            <h1>MY FAVORITES</h1>
+            <p>마음에 드는 신화 작품을 모아보세요.</p>
+        </div>
+
+        <p id="favorites-message" role="status">찜 목록을 불러오는 중입니다.</p>
+
+        <div class="artwork-grid" id="favorites-list"></div>
+    </main>
+
+    <div id="common-footer"></div>
+
+</body>
+
+</html>

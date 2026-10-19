@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 | MYTHOS</title>
+    <link rel="icon" type="image/svg+xml" href="image/icons/logo.svg">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/login.css">
+
+
+</head>
+
+<body>
+    <div id="common-header"></div>
+
+    <main class="login-page">
+        <section class="login-panel">
+            <a href="index.html" class="login-logo">MYTHOS</a>
+
+            <h1>MYTHOS 회원가입</h1>
+            <p class="login-description">
+                나만의 작품 컬렉션을 시작해 보세요.
+            </p>
+
+            <form id="signup-form">
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email" placeholder="이메일 주소" autocomplete="email" required>
+
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" placeholder="6자 이상 입력" minlength="6"
+                    autocomplete="new-password" required>
+
+                <button type="submit" class="login-button">
+                    회원가입
+                </button>
+
+                <p id="signup-message" role="status"></p>
+            </form>
+
+            <p class="signup-link">
+                이미 계정이 있으신가요?
+                <a href="login.html">로그인</a>
+            </p>
+        </section>
+    </main>
+    <div id="common-footer"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/signup.js"></script>
+    <script src="js/common.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ART RENTAL | MYTHOS</title>
+    <link rel="icon" type="image/svg+xml" href="image/icons/logo.svg">
+    <meta name="description" content="그리스 신화 예술 작품을 MYTHOS에서 만나보세요. 원하는 작품을 선택하고 대여 정보를 확인할 수 있습니다.">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/subpages.css">
+    <link rel="stylesheet" href="css/rental.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js" defer></script>
+    <script src="js/common.js" defer></script>
+    <script src="js/rental-page.js" defer></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div id="common-header"></div>
+
+
+    <main class="subpage rental-page">
+
+        <!-- HERO -->
+        <section class="subpage-hero rental-hero">
+            <div class="subpage-hero-inner">
+                <p class="subpage-eyebrow">MYTHOS COLLECTION</p>
+
+                <h1>
+                    ART
+                    <span>RENTAL</span>
+                </h1>
+
+                <p class="subpage-description">
+                    신화 속 이야기를 담은 예술 작품을<br>
+                    원하는 공간에서 경험해 보세요.
+                </p>
+
+                <a href="#rental-collection" class="rental-hero-link">
+                    작품 둘러보기
+                    <span aria-hidden="true">↓</span>
+                </a>
+            </div>
+
+            <div class="rental-hero-decoration" aria-hidden="true">
+                <span>ART</span>
+                <span>01 — 20</span>
+            </div>
+        </section>
+
+        <!-- RENTAL GUIDE -->
+        <section class="rental-guide">
+            <div class="rental-guide-inner">
+
+                <div class="rental-guide-heading">
+                    <p class="section-eyebrow">HOW IT WORKS</p>
+                    <h2>작품 대여 안내</h2>
+                    <p>
+                        마음에 드는 작품을 선택하고 대여 정보를 확인해 보세요.
+                    </p>
+                </div>
+
+                <div class="rental-steps">
+                    <article class="rental-step">
+                        <span class="rental-step-number">01</span>
+                        <div>
+                            <h3>작품 선택</h3>
+                            <p>컬렉션에서 대여할 작품을 선택합니다.</p>
+                        </div>
+                    </article>
+
+                    <article class="rental-step">
+                        <span class="rental-step-number">02</span>
+                        <div>
+                            <h3>대여 정보 확인</h3>
+                            <p>작품의 대여 가능 여부와 1일 대여료를 확인합니다.</p>
+                        </div>
+                    </article>
+
+                    <article class="rental-step">
+                        <span class="rental-step-number">03</span>
+                        <div>
+                            <h3>대여 신청</h3>
+                            <p>작품과 대여 기간을 선택해 신청 정보를 작성합니다.</p>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RENTAL COLLECTION -->
+        <section class="rental-collection" id="rental-collection">
+            <div class="rental-collection-inner">
+
+                <div class="rental-collection-heading">
+                    <div>
+                        <p class="section-eyebrow">AVAILABLE ARTWORKS</p>
+                        <h2>대여 작품</h2>
+                        <p class="rental-collection-description">
+                            공간에 새로운 이야기를 더해 줄 작품을 만나보세요.
+                        </p>
+                    </div>
+
+                    <p class="rental-total" id="rental-count">
+                        작품을 불러오는 중...
+                    </p>
+                </div>
+
+                <!-- FILTERS -->
+                <div class="rental-controls">
+
+                    <div class="rental-filter-group" aria-label="작품 주제 필터">
+                        <button type="button" class="rental-filter-btn active" data-theme="all" aria-pressed="true">
+                            전체 작품
+                        </button>
+
+                        <button type="button" class="rental-filter-btn" data-theme="신과 여신" aria-pressed="false">
+                            신과 여신
+                        </button>
+
+                        <button type="button" class="rental-filter-btn" data-theme="영웅과 전설" aria-pressed="false">
+                            영웅과 전설
+                        </button>
+
+                        <button type="button" class="rental-filter-btn" data-theme="사랑과 비극" aria-pressed="false">
+                            사랑과 비극
+                        </button>
+
+                        <button type="button" class="rental-filter-btn" data-theme="괴물과 환상" aria-pressed="false">
+                            괴물과 환상
+                        </button>
+
+                        <button type="button" class="rental-filter-btn" data-theme="자연과 세계" aria-pressed="false">
+                            자연과 세계
+                        </button>
+                    </div>
+
+                    <div class="rental-sort-control">
+                        <label for="rental-sort">정렬</label>
+
+                        <select id="rental-sort">
+                            <option value="default">기본순</option>
+                            <option value="title">작품명순</option>
+                            <option value="price-asc">대여료 낮은순</option>
+                            <option value="price-desc">대여료 높은순</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- ARTWORK LIST -->
+                <div class="rental-artwork-grid" id="rental-list" aria-live="polite">
+                    <p class="rental-loading">
+                        작품 정보를 불러오는 중입니다.
+                    </p>
+                </div>
+
+                <!-- EMPTY STATE -->
+                <div class="rental-empty" id="rental-empty" hidden>
+                    <p class="rental-empty-number">NO ARTWORKS</p>
+                    <h3>대여 가능한 작품이 없습니다.</h3>
+                    <p>
+                        다른 카테고리를 선택하거나 전체 작품을 확인해 보세요.
+                    </p>
+
+                    <button type="button" class="rental-reset-btn" id="rental-reset">
+                        전체 작품 보기
+                    </button>
+                </div>
+
+                <!-- ERROR STATE -->
+                <div class="rental-error" id="rental-error" hidden>
+                    <p>작품 정보를 불러오지 못했습니다.</p>
+                    <button type="button" id="rental-retry">
+                        다시 시도하기
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RENTAL NOTICE -->
+        <section class="rental-notice">
+            <div class="rental-notice-inner">
+                <div class="rental-notice-heading">
+                    <p class="section-eyebrow">PLEASE NOTE</p>
+                    <h2>대여 전 확인해 주세요.</h2>
+                </div>
+
+                <div class="rental-notice-content">
+                    <article>
+                        <span>01</span>
+                        <div>
+                            <h3>대여료</h3>
+                            <p>
+                                작품별 1일 대여료가 다르므로 상세 금액을 확인해 주세요.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article>
+                        <span>02</span>
+                        <div>
+                            <h3>대여 가능 여부</h3>
+                            <p>
+                                작품의 대여 가능 상태에 따라 신청이 제한될 수 있습니다.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article>
+                        <span>03</span>
+                        <div>
+                            <h3>신청 확인</h3>
+                            <p>
+                                신청 후 대여 일정과 세부 사항을 확인해야 합니다.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="rental-cta">
+            <div class="rental-cta-inner">
+                <p class="section-eyebrow">DISCOVER MORE</p>
+                <h2>
+                    모든 작품에는<br>
+                    하나의 이야기가 있습니다.
+                </h2>
+                <p>
+                    MYTHOS 컬렉션에서 당신만의 작품을 찾아보세요.
+                </p>
+
+                <a href="artworks.html" class="rental-cta-link">
+                    전체 작품 보기
+                    <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <div id="common-footer"></div>
+
+</body>
+
+</html>

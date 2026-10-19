@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MYTHOS | 일상이 예술이 되는 공간</title>
+    <link rel="icon" type="image/svg+xml" href="image/icons/logo.svg">
+    <meta name="description" content="그리스 신화에서 영감을 받은 예술 작품을 감상하고, 대여하고, 소장해 보세요.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Serif+KR:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/common.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div id="common-header"></div>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-background">
+                <img src="image/main-hero.jpg" alt="고전 회화의 질감과 색채">
+            </div>
+
+            <div class="hero-inner">
+                <p class="hero-eyebrow">GREEK MYTHOLOGY ART GALLERY</p>
+
+                <h1 class="hero-title">
+                    예술이 머무는<br>
+                    일상의 공간
+                </h1>
+
+                <p class="hero-description">
+                    그리스 신화 속 장면과 영감의 세계.<br>
+                    당신의 공간에 특별한 이야기를 더하세요.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="artworks.html" class="btn-primary">
+                        작품 둘러보기 <span aria-hidden="true">→</span>
+                    </a>
+                    <a href="mythology.html" class="btn-secondary">
+                        신화 이야기 보기
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-pagination" aria-label="현재 페이지">
+                <span>01</span>
+                <span class="pagination-line"></span>
+                <span>03</span>
+            </div>
+        </section>
+
+        <!-- SERVICE INTRO -->
+        <section class="service-intro">
+            <div class="service-inner">
+                <article class="service-item">
+                    <div class="service-icon">
+                        <img src="image/icons/rental.svg" alt="">
+                    </div>
+                    <div class="service-text">
+                        <h2>대여로 만나는 명화</h2>
+                        <p>일상의 공간에 신화가 스며듭니다.</p>
+                    </div>
+                </article>
+
+                <article class="service-item">
+                    <div class="service-icon">
+                        <img src="image/icons/artwork.svg" alt="">
+                    </div>
+                    <div class="service-text">
+                        <h2>구매로 소장하는 예술</h2>
+                        <p>시간이 지나도 빛나는 가치를.</p>
+                    </div>
+                </article>
+
+                <article class="service-item">
+                    <div class="service-icon">
+                        <img src="image/icons/column.svg" alt="">
+                    </div>
+                    <div class="service-text">
+                        <h2>신화 속 이야기를 함께</h2>
+                        <p>작품에 담긴 신화의 비밀을 만나보세요.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- FEATURED ARTWORKS -->
+        <section class="featured-artworks" id="featured-artworks">
+            <div class="featured-inner">
+                <div class="section-heading">
+                    <span class="section-eyebrow">CURATED COLLECTION</span>
+                    <h2>신화 속 이야기를 담은 작품</h2>
+                    <p>그리스 신화의 영감과 아름다움을 공간에 더해 보세요.</p>
+                </div>
+
+                <div class="artwork-grid" id="featured-artwork-list">
+
+                    <!-- 작품 01 -->
+                    <article class="artwork-card" data-id="MYTH-001">
+                        <a href="detail.html?id=MYTH-001" class="artwork-image-link">
+                            <div class="artwork-image">
+                                <img src="image/artspace01.jpg" alt="올림포스의 신들">
+                                <span class="artwork-number">01</span>
+                            </div>
+                        </a>
+
+                        <div class="artwork-info">
+                            <div class="artwork-meta">
+                                <span>CLASSICAL ART</span>
+                                <button type="button" class="btn-favorite" aria-label="관심 작품에 추가" aria-pressed="false"
+                                    data-requires-login>♡</button>
+                            </div>
+
+                            <h3 class="artwork-title">
+                                <a href="detail.html?id=MYTH-001">올림포스의 신들</a>
+                            </h3>
+
+                            <p class="artwork-artist">MYTHOS STUDIO 001</p>
+
+                            <div class="artwork-price">
+                                <span>대여</span>
+                                <strong>13,000원 / 일</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 작품 02 -->
+                    <article class="artwork-card" data-id="MYTH-002">
+                        <a href="detail.html?id=MYTH-002" class="artwork-image-link">
+                            <div class="artwork-image">
+                                <img src="image/artspace02.jpg" alt="아테나의 지혜">
+                                <span class="artwork-number">02</span>
+                            </div>
+                        </a>
+
+                        <div class="artwork-info">
+                            <div class="artwork-meta">
+                                <span>CLASSICAL ART</span>
+                                <button type="button" class="btn-favorite" aria-label="관심 작품에 추가" aria-pressed="false"
+                                    data-requires-login>♡</button>
+                            </div>
+
+                            <h3 class="artwork-title">
+                                <a href="detail.html?id=MYTH-002">아테나의 지혜</a>
+                            </h3>
+
+                            <p class="artwork-artist">MYTHOS STUDIO 002</p>
+
+                            <div class="artwork-price">
+                                <span>대여</span>
+                                <strong>16,000원 / 일</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 작품 03 -->
+                    <article class="artwork-card" data-id="MYTH-003">
+                        <a href="detail.html?id=MYTH-003" class="artwork-image-link">
+                            <div class="artwork-image">
+                                <img src="image/artspace03.jpg" alt="아폴론의 빛">
+                                <span class="artwork-number">03</span>
+                            </div>
+                        </a>
+
+                        <div class="artwork-info">
+                            <div class="artwork-meta">
+                                <span>CLASSICAL ART</span>
+                                <button type="button" class="btn-favorite" aria-label="관심 작품에 추가" aria-pressed="false"
+                                    data-requires-login>♡</button>
+                            </div>
+
+                            <h3 class="artwork-title">
+                                <a href="detail.html?id=MYTH-003">아폴론의 빛</a>
+                            </h3>
+
+                            <p class="artwork-artist">MYTHOS STUDIO 003</p>
+
+                            <div class="artwork-price">
+                                <span>대여</span>
+                                <strong>11,500원 / 일</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- MYTH STORY -->
+        <section class="myth-story" id="myth-story">
+            <div class="myth-story-inner">
+                <div class="myth-story-image">
+                    <img src="image/artspace03.jpg" alt="고전 신화 회화" loading="lazy">
+                </div>
+
+                <div class="myth-story-content">
+                    <p class="section-eyebrow">STORIES BEHIND ART</p>
+
+                    <h2 class="section-title">
+                        그림 속에 숨겨진<br>
+                        신화의 이야기
+                    </h2>
+
+                    <p class="section-description">
+                        신과 영웅, 사랑과 운명으로 이어지는 그리스 신화.
+                        작품 속 장면에 담긴 이야기를 따라가 보세요.
+                    </p>
+
+                    <a href="mythology.html" class="btn-primary">
+                        신화 이야기 만나기 <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="how-it-works">
+            <div class="how-inner">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-eyebrow">HOW IT WORKS</p>
+                        <h2 class="section-title">예술을 만나는 방법</h2>
+                    </div>
+                </div>
+
+                <div class="guide-grid">
+                    <article class="guide-item">
+                        <span class="guide-number">01</span>
+                        <h3>작품 탐색</h3>
+                        <p>취향에 맞는 작품을 둘러보고 마음에 드는 작품을 찾아보세요.</p>
+                    </article>
+
+                    <article class="guide-item">
+                        <span class="guide-number">02</span>
+                        <h3>대여 또는 구매</h3>
+                        <p>공간과 목적에 맞게 작품을 대여하거나 소장할 수 있습니다.</p>
+                    </article>
+
+                    <article class="guide-item">
+                        <span class="guide-number">03</span>
+                        <h3>일상 속 예술</h3>
+                        <p>작품이 전하는 이야기를 당신의 일상에서 경험해 보세요.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMUNITY -->
+        <section class="community" id="community">
+            <div class="community-inner">
+                <p class="section-eyebrow">MYTHOS COMMUNITY</p>
+                <h2 class="section-title">예술을 사랑하는 사람들의 공간</h2>
+
+                <p class="section-description">
+                    작품에 대한 감상과 이야기를 나누고<br>
+                    새로운 영감을 발견해 보세요.
+                </p>
+
+                <a href="community.html" class="btn-secondary">
+                    커뮤니티 둘러보기 <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <div id="common-footer"></div>
+</body>
+
+</html>

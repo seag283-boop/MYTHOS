@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장바구니 | MYTHOS</title>
+    <link rel="icon" type="image/svg+xml" href="image/icons/logo.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Serif+KR:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/common.js" defer></script>
+
+    <style>
+        .cart-page {
+            width: calc(100% - 48px);
+            max-width: 1100px;
+            min-height: 65vh;
+            margin: 0 auto;
+            padding: 140px 0 100px;
+        }
+
+        .cart-heading {
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        .cart-eyebrow {
+            margin-bottom: 12px;
+            color: #898276;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        .cart-heading h1 {
+            font-family: "Noto Serif KR", serif;
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 400;
+        }
+
+        .cart-heading p {
+            margin-top: 14px;
+            color: #777168;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .cart-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 310px;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .cart-list-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #292929;
+        }
+
+        .cart-list-heading h2 {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .cart-count {
+            color: #777168;
+            font-size: 12px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 120px minmax(0, 1fr);
+            gap: 20px;
+            padding: 24px 0;
+            border-bottom: 1px solid #e5e1d9;
+        }
+
+        .cart-item-image {
+            display: block;
+            width: 120px;
+            aspect-ratio: 4 / 5;
+            background: #f1efeb;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            min-width: 0;
+        }
+
+        .cart-item-category {
+            margin-bottom: 8px;
+            color: #898276;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .cart-item-title {
+            margin-bottom: 6px;
+            font-family: "Noto Serif KR", serif;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .cart-item-artist {
+            margin-bottom: 14px;
+            color: #777168;
+            font-size: 12px;
+        }
+
+        .cart-item-option {
+            color: #555047;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .cart-item-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .cart-quantity {
+            display: flex;
+            align-items: center;
+            border: 1px solid #d8d5cf;
+        }
+
+        .cart-quantity button {
+            width: 30px;
+            height: 30px;
+            border: 0;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .cart-quantity output {
+            min-width: 28px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .cart-item-price {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .cart-remove {
+            margin-top: 12px;
+            padding: 0;
+            border: 0;
+            background: none;
+            color: #898276;
+            font-family: inherit;
+            font-size: 11px;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            cursor: pointer;
+        }
+
+        .cart-summary {
+            position: sticky;
+            top: 100px;
+            padding: 26px 22px;
+            border: 1px solid #e5e1d9;
+        }
+
+        .cart-summary h2 {
+            margin-bottom: 24px;
+            font-family: "Noto Serif KR", serif;
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        .cart-summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 16px 0;
+            color: #666159;
+            font-size: 12px;
+        }
+
+        .cart-summary-row strong {
+            color: #292929;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .cart-summary-total {
+            padding-top: 20px;
+            border-top: 1px solid #e5e1d9;
+        }
+
+        .cart-summary-total span {
+            color: #292929;
+        }
+
+        .cart-summary-total strong {
+            font-size: 22px;
+        }
+
+        .cart-checkout {
+            width: 100%;
+            min-height: 48px;
+            margin-top: 16px;
+            border: 1px solid #242424;
+            background: #242424;
+            color: #fff;
+            font-family: inherit;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .cart-checkout:hover {
+            background: #444;
+        }
+
+        .cart-continue {
+            display: block;
+            margin-top: 18px;
+            color: #625d54;
+            font-size: 12px;
+            text-align: center;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .cart-empty {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cart-empty h2 {
+            margin-bottom: 12px;
+            font-family: "Noto Serif KR", serif;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .cart-empty p {
+            margin-bottom: 24px;
+            color: #777168;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .cart-empty-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 24px;
+            border: 1px solid #292929;
+            color: #292929;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .cart-message {
+            margin-top: 14px;
+            color: #625d54;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .cart-page {
+                width: calc(100% - 36px);
+                padding: 110px 0 64px;
+            }
+
+            .cart-heading {
+                margin-bottom: 32px;
+            }
+
+            .cart-content {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .cart-summary {
+                position: static;
+            }
+
+            .cart-item {
+                grid-template-columns: 92px minmax(0, 1fr);
+                gap: 14px;
+            }
+
+            .cart-item-image {
+                width: 92px;
+            }
+
+            .cart-item-title {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .cart-item-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="common-header"></div>
+
+
+    <main class="cart-page">
+        <div class="cart-heading">
+            <p class="cart-eyebrow">YOUR COLLECTION</p>
+            <h1>장바구니</h1>
+            <p>
+                당신이 선택한 예술 작품을 확인해 보세요.<br>
+                대여 및 구매 옵션은 주문 전에 다시 확인할 수 있습니다.
+            </p>
+        </div>
+
+        <section id="cart-main" aria-label="장바구니 내용">
+            <div class="cart-content">
+                <div class="cart-list">
+                    <div class="cart-list-heading">
+                        <h2>선택한 작품</h2>
+                        <span class="cart-count" id="cart-count">0개</span>
+                    </div>
+                    <div id="cart-items"></div>
+                </div>
+
+                <aside class="cart-summary">
+                    <h2>주문 요약</h2>
+
+                    <div class="cart-summary-row">
+                        <span>작품 수</span>
+                        <strong id="summary-count">0개</strong>
+                    </div>
+
+                    <div class="cart-summary-row">
+                        <span>예상 금액</span>
+                        <strong id="summary-subtotal">0원</strong>
+                    </div>
+
+                    <div class="cart-summary-row cart-summary-total">
+                        <span>총 금액</span>
+                        <strong id="summary-total">0원</strong>
+                    </div>
+
+                    <button type="button" class="cart-checkout" id="cart-checkout">
+                        주문 진행하기
+                    </button>
+
+                    <p class="cart-message" id="cart-message" role="status" aria-live="polite"></p>
+
+                    <a href="artworks.html" class="cart-continue">작품 더 둘러보기</a>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <div id="common-footer"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const itemsContainer = document.getElementById("cart-items");
+            const cartCount = document.getElementById("cart-count");
+            const summaryCount = document.getElementById("summary-count");
+            const subtotalEl = document.getElementById("summary-subtotal");
+            const totalEl = document.getElementById("summary-total");
+            const messageEl = document.getElementById("cart-message");
+            const checkoutButton = document.getElementById("cart-checkout");
+
+            function won(value) {
+                return new Intl.NumberFormat("ko-KR").format(value) + "원";
+            }
+
+            function readCart() {
+                try {
+                    const cart = JSON.parse(localStorage.getItem("mythosCart") || "[]");
+                    return Array.isArray(cart) ? cart : [];
+                } catch (error) {
+                    console.error("장바구니 데이터 읽기 오류:", error);
+                    return [];
+                }
+            }
+
+            function saveCart(cart) {
+                localStorage.setItem("mythosCart", JSON.stringify(cart));
+            }
+
+            // 기존에 저장된 이미지 경로도 작품 ID에 맞춰 보정
+            function getArtworkImagePath(item) {
+                const filename = String(item.image || "").trim();
+
+                if (filename && /^https?:\/\//i.test(filename)) {
+                    return filename;
+                }
+
+                if (filename) {
+                    const cleanPath = filename
+                        .replace(/^\.\//, "")
+                        .replace(/^\/+/, "");
+
+                    if (
+                        cleanPath.startsWith("image/") &&
+                        !/mythos_\d+\.jpg$/i.test(cleanPath)
+                    ) {
+                        return cleanPath;
+                    }
+
+                    if (
+                        !cleanPath.includes("/") &&
+                        !/^mythos_\d+\.jpg$/i.test(cleanPath)
+                    ) {
+                        return `image/${cleanPath}`;
+                    }
+                }
+
+                const match = String(item.id || "").match(/MYTH-(\d+)/i);
+                const number = match ? Number(match[1]) : 1;
+
+                if (number >= 1 && number <= 20) {
+                    return `image/artspace${String(number).padStart(2, "0")}.jpg`;
+                }
+
+                return "image/artspace01.jpg";
+            }
+
+            function getOptionText(item) {
+                if (item.action === "rent") {
+                    return `대여 · ${item.option}일`;
+                }
+
+                return item.option === "original"
+                    ? "구매 · 원화 작품"
+                    : "구매 · 프린트 작품";
+            }
+
+            function getItemTotal(item) {
+                return Number(item.unitPrice || 0) * Number(item.quantity || 1);
+            }
+
+            function renderCartItem(item, index) {
+                const article = document.createElement("article");
+                article.className = "cart-item";
+
+                const image = document.createElement("img");
+                image.className = "cart-item-image";
+                image.src = getArtworkImagePath(item);
+                image.alt = item.title || item.id || "작품 이미지";
+                image.loading = "lazy";
+
+                image.onerror = function () {
+                    this.onerror = null;
+
+                    const match = String(item.id || "").match(/MYTH-(\d+)/i);
+                    const number = match ? Number(match[1]) : 1;
+
+                    this.src = number >= 1 && number <= 20
+                        ? `image/artspace${String(number).padStart(2, "0")}.jpg`
+                        : "image/artspace01.jpg";
+                };
+
+                const info = document.createElement("div");
+                info.className = "cart-item-info";
+
+                const category = document.createElement("p");
+                category.className = "cart-item-category";
+                category.textContent = "MYTHOS ART COLLECTION";
+
+                const title = document.createElement("h3");
+                title.className = "cart-item-title";
+                title.textContent = item.title || item.id || "작품명 없음";
+
+                const artist = document.createElement("p");
+                artist.className = "cart-item-artist";
+                artist.textContent = item.artist || "작가 정보 없음";
+
+                const option = document.createElement("p");
+                option.className = "cart-item-option";
+                option.textContent = getOptionText(item);
+
+                const bottom = document.createElement("div");
+                bottom.className = "cart-item-bottom";
+
+                const quantity = document.createElement("div");
+                quantity.className = "cart-quantity";
+
+                const minus = document.createElement("button");
+                minus.type = "button";
+                minus.textContent = "−";
+                minus.setAttribute("aria-label", "수량 줄이기");
+
+                const quantityOutput = document.createElement("output");
+                quantityOutput.textContent = item.quantity || 1;
+
+                const plus = document.createElement("button");
+                plus.type = "button";
+                plus.textContent = "+";
+                plus.setAttribute("aria-label", "수량 늘리기");
+
+                minus.addEventListener("click", () => {
+                    const cart = readCart();
+
+                    if (!cart[index]) return;
+
+                    cart[index].quantity = Math.max(
+                        1,
+                        Number(cart[index].quantity || 1) - 1
+                    );
+
+                    cart[index].totalPrice =
+                        Number(cart[index].unitPrice || 0) * cart[index].quantity;
+
+                    saveCart(cart);
+                    renderCart();
+                });
+
+                plus.addEventListener("click", () => {
+                    const cart = readCart();
+
+                    if (!cart[index]) return;
+
+                    cart[index].quantity = Math.min(
+                        99,
+                        Number(cart[index].quantity || 1) + 1
+                    );
+
+                    cart[index].totalPrice =
+                        Number(cart[index].unitPrice || 0) * cart[index].quantity;
+
+                    saveCart(cart);
+                    renderCart();
+                });
+
+                quantity.append(minus, quantityOutput, plus);
+
+                const price = document.createElement("strong");
+                price.className = "cart-item-price";
+                price.textContent = won(getItemTotal(item));
+
+                bottom.append(quantity, price);
+
+                const remove = document.createElement("button");
+                remove.type = "button";
+                remove.className = "cart-remove";
+                remove.textContent = "장바구니에서 삭제";
+
+                remove.addEventListener("click", () => {
+                    const cart = readCart();
+                    cart.splice(index, 1);
+                    saveCart(cart);
+                    messageEl.textContent = "작품을 장바구니에서 삭제했습니다.";
+                    renderCart();
+                });
+
+                info.append(category, title, artist, option, bottom, remove);
+                article.append(image, info);
+
+                return article;
+            }
+
+            function renderCart() {
+                const cart = readCart();
+
+                itemsContainer.innerHTML = "";
+
+                if (cart.length === 0) {
+                    const empty = document.createElement("div");
+                    empty.className = "cart-empty";
+
+                    const title = document.createElement("h2");
+                    title.textContent = "장바구니가 비어 있어요.";
+
+                    const description = document.createElement("p");
+                    description.textContent =
+                        "마음에 드는 작품을 찾아 대여하거나 소장해 보세요.";
+
+                    const link = document.createElement("a");
+                    link.className = "cart-empty-link";
+                    link.href = "artworks.html";
+                    link.textContent = "작품 둘러보기";
+
+                    empty.append(title, description, link);
+                    itemsContainer.appendChild(empty);
+                } else {
+                    cart.forEach((item, index) => {
+                        itemsContainer.appendChild(renderCartItem(item, index));
+                    });
+                }
+
+                const count = cart.reduce(
+                    (sum, item) => sum + Number(item.quantity || 1),
+                    0
+                );
+
+                const subtotal = cart.reduce(
+                    (sum, item) => sum + getItemTotal(item),
+                    0
+                );
+
+                cartCount.textContent = `${count}개`;
+                summaryCount.textContent = `${count}개`;
+                subtotalEl.textContent = won(subtotal);
+                totalEl.textContent = won(subtotal);
+            }
+
+            checkoutButton.addEventListener("click", () => {
+                const cart = readCart();
+
+                if (cart.length === 0) {
+                    messageEl.textContent = "장바구니에 작품을 먼저 담아 주세요.";
+                    return;
+                }
+
+                messageEl.textContent =
+                    "주문 및 결제 기능은 별도의 주문 시스템 연결이 필요합니다.";
+            });
+
+            renderCart();
+        });
+    </script>
+</body>
+
+</html>

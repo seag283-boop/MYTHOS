@@ -1,0 +1,235 @@
+/* ==============================
+   FAVORITES PAGE
+============================== */
+
+.favorites-main {
+    width: 100%;
+    max-width: 1280px;
+    min-height: 650px;
+    margin: 0 auto;
+    padding: 80px 40px 120px;
+    box-sizing: border-box;
+}
+
+/* 페이지 제목 */
+
+.favorites-heading {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.favorites-heading>span {
+    color: #888773;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.favorites-heading h1 {
+    margin: 18px 0;
+    color: #343b2e;
+    font-family: Georgia, serif;
+    font-size: 42px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.favorites-heading p {
+    color: #77776e;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* 작품 개수 및 안내 메시지 */
+
+#favorites-message {
+    margin-bottom: 28px;
+    color: #77776e;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* 로그인 링크 */
+
+.favorites-login-link {
+    color: #414936;
+    text-underline-offset: 4px;
+}
+
+/* ==============================
+   FAVORITES GRID
+============================== */
+
+#favorites-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px 28px;
+    align-items: start;
+}
+
+/* 작품 카드 */
+
+#favorites-list .favorite-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 작품 링크 */
+
+#favorites-list .favorite-card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* 작품 이미지 */
+
+#favorites-list .favorite-card-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #eeeae1;
+}
+
+#favorites-list .favorite-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+#favorites-list .favorite-card-link:hover .favorite-card-image img {
+    transform: scale(1.04);
+}
+
+/* 작품 정보 */
+
+#favorites-list .favorite-card-info {
+    padding-top: 18px;
+}
+
+/* 작품 테마 */
+
+#favorites-list .favorite-card-theme {
+    margin-bottom: 12px;
+    color: #898777;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* 작품 제목 */
+
+#favorites-list .favorite-card-title {
+    margin: 0 0 8px;
+    color: #34352f;
+    font-family: Georgia, serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* 작가명 */
+
+#favorites-list .favorite-card-artist {
+    margin: 0;
+    color: #858478;
+    font-size: 12px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+/* 관심 작품 삭제 버튼 */
+
+#favorites-list .favorite-remove-btn {
+    align-self: flex-start;
+    margin-top: 18px;
+    padding: 10px 0;
+    border: 0;
+    border-bottom: 1px solid #d8d1c4;
+    background: transparent;
+    color: #77776e;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+#favorites-list .favorite-remove-btn:hover {
+    color: #8b594e;
+    border-color: #8b594e;
+}
+
+#favorites-list .favorite-remove-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ==============================
+   FOOTER
+============================== */
+
+.favorites-footer {
+    padding: 38px 20px;
+    border-top: 1px solid #e5e0d6;
+    background: #f5f2eb;
+    text-align: center;
+}
+
+.favorites-footer>a {
+    color: #343b2e;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    letter-spacing: 4px;
+    text-decoration: none;
+}
+
+.favorites-footer p {
+    margin-top: 12px;
+    color: #898777;
+    font-size: 12px;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+    .favorites-main {
+        padding: 65px 30px 90px;
+    }
+
+    #favorites-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 38px 22px;
+    }
+
+    .favorites-heading h1 {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .favorites-main {
+        padding: 50px 20px 70px;
+    }
+
+    #favorites-list {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .favorites-heading {
+        margin-bottom: 35px;
+    }
+
+    .favorites-heading h1 {
+        font-size: 32px;
+    }
+
+    #favorites-list .favorite-card-title {
+        font-size: 19px;
+    }
+}

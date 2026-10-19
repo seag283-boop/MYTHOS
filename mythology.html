@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="그리스 신화 속 신과 영웅, 사랑과 운명의 이야기를 만나보세요.">
+
+    <title>MYTHOLOGY | MYTHOS</title>
+    <link rel="icon" type="image/svg+xml" href="image/icons/logo.svg">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/mytholog.css">
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="js/supabase.js" defer></script>
+    <script src="js/common.js" defer></script>
+    <script src="js/mytholog.js" defer></script>
+</head>
+
+<body class="mytholog-page">
+
+    <!-- HEADER -->
+    <div id="common-header"></div>
+
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="mytholog-hero">
+
+            <div class="mytholog-hero-bg" style="background-image: url('image/artspace20.jpg');"></div>
+
+            <div class="mytholog-hero-overlay"></div>
+
+            <div class="mytholog-hero-content">
+
+                <p class="mytholog-eyebrow">
+                    MYTHOS ARCHIVE · GREEK MYTHOLOGY
+                </p>
+
+                <h1>
+                    STORIES BEYOND<br>
+                    THE GODS
+                </h1>
+
+                <p>
+                    신과 영웅, 사랑과 운명으로 이어지는<br>
+                    그리스 신화의 이야기를 만나보세요.
+                </p>
+
+                <a href="#mytholog-collection" class="mytholog-hero-btn">
+                    EXPLORE MYTHS
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+            <div class="mytholog-hero-number">
+                <span>01</span>
+                <span> / </span>
+                <span>MYTHOLOGY</span>
+            </div>
+
+        </section>
+
+
+        <!-- INTRO -->
+        <section class="mytholog-intro mytholog-section-padding">
+
+            <div class="mytholog-section-label">
+                <span>01</span>
+                <span>INTRODUCTION</span>
+            </div>
+
+            <div class="mytholog-intro-content">
+
+                <p class="mytholog-intro-small">
+                    A WORLD OF MYTHS
+                </p>
+
+                <h2>
+                    신화는 예술이 되고,<br>
+                    예술은 이야기를 기억합니다.
+                </h2>
+
+                <p class="mytholog-intro-description">
+                    그리스 신화에는 신들의 권능과 영웅들의 시련,
+                    사랑과 상실, 그리고 인간의 운명에 관한 이야기가 담겨 있습니다.
+                    MYTHOS는 오래된 신화 속 이야기를 예술과 함께 살펴보는 공간입니다.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURED MYTH -->
+        <section class="mytholog-featured mytholog-section-padding">
+
+            <div class="mytholog-section-label">
+                <span>02</span>
+                <span>FEATURED STORY</span>
+            </div>
+
+            <div class="mytholog-featured-layout">
+
+                <div class="mytholog-featured-image">
+                    <img src="image/artspace03.jpg" alt="그리스 신화를 주제로 한 대표 작품">
+
+                    <p class="mytholog-image-caption">
+                        MYTHOLOGY · FEATURED ARTWORK
+                    </p>
+                </div>
+
+                <div class="mytholog-featured-content">
+
+                    <p class="mytholog-featured-number">
+                        FEATURED MYTH · 001
+                    </p>
+
+                    <p class="mytholog-featured-category">
+                        OLYMPIAN GODS
+                    </p>
+
+                    <h2>ZEUS</h2>
+
+                    <h3>신들의 왕, 제우스</h3>
+
+                    <p class="mytholog-featured-description">
+                        하늘과 번개를 다스리는 올림포스의 왕.
+                        제우스의 이야기를 통해 신들의 세계와
+                        그리스 신화의 시작을 살펴봅니다.
+                    </p>
+
+                    <button type="button" class="mytholog-text-link" data-mytholog-story="zeus">
+                        READ THE STORY
+                        <span>↗</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MYTHOLOGY COLLECTION -->
+        <section class="mytholog-collection mytholog-section-padding" id="mytholog-collection">
+
+            <div class="mytholog-section-label">
+                <span>03</span>
+                <span>MYTHOLOGY COLLECTION</span>
+            </div>
+
+            <div class="mytholog-collection-heading">
+
+                <div>
+                    <p>EXPLORE THE STORIES</p>
+                    <h2>Mythology Archive</h2>
+                </div>
+
+                <p>
+                    신화 속 인물과 이야기를 선택해<br>
+                    그 안에 담긴 의미를 살펴보세요.
+                </p>
+
+            </div>
+
+
+            <!-- FILTER -->
+            <div class="mytholog-filter" role="group" aria-label="신화 분류">
+
+                <button type="button" class="mytholog-filter-btn is-active" data-category="all" aria-pressed="true">
+                    ALL STORIES
+                </button>
+
+                <button type="button" class="mytholog-filter-btn" data-category="gods" aria-pressed="false">
+                    GODS
+                </button>
+
+                <button type="button" class="mytholog-filter-btn" data-category="heroes" aria-pressed="false">
+                    HEROES
+                </button>
+
+                <button type="button" class="mytholog-filter-btn" data-category="love" aria-pressed="false">
+                    LOVE & FATE
+                </button>
+
+                <button type="button" class="mytholog-filter-btn" data-category="monsters" aria-pressed="false">
+                    MONSTERS
+                </button>
+
+            </div>
+
+
+            <div class="mytholog-collection-meta">
+                <p>MYTHOLOGY STORIES</p>
+                <p><span id="mytholog-story-count">6</span> STORIES</p>
+            </div>
+
+
+            <!-- STORY CARDS -->
+            <div class="mytholog-story-grid" id="mytholog-story-grid">
+
+                <!-- ZEUS -->
+                <article class="mytholog-story-card" data-category="gods" data-story="zeus">
+                    <button type="button" class="mytholog-story-open" data-mytholog-story="zeus"
+                        aria-label="제우스 이야기 보기">
+
+                        <div class="mytholog-story-image">
+                            <img src="image/artspace03.jpg" alt="제우스 관련 작품">
+
+                            <span class="mytholog-story-index">01</span>
+                            <span class="mytholog-story-arrow">↗</span>
+                        </div>
+
+                        <div class="mytholog-story-info">
+                            <p class="mytholog-story-category">OLYMPIAN GODS</p>
+                            <h3>제우스</h3>
+                            <p>신들의 왕, 하늘과 번개의 지배자</p>
+                            <span class="mytholog-story-more">DISCOVER STORY</span>
+                        </div>
+
+                    </button>
+                </article>
+
+
+                <!-- PERSEPHONE -->
+                <article class="mytholog-story-card" data-category="love" data-story="persephone">
+                    <button type="button" class="mytholog-story-open" data-mytholog-story="persephone"
+                        aria-label="페르세포네 이야기 보기">
+
+                        <div class="mytholog-story-image">
+                            <img src="image/artspace04.jpg" alt="페르세포네 관련 작품">
+
+                            <span class="mytholog-story-index">02</span>
+                            <span class="mytholog-story-arrow">↗</span>
+                        </div>
+
+                        <div class="mytholog-story-info">
+                            <p class="mytholog-story-category">LOVE & FATE</p>
+                            <h3>페르세포네</h3>
+                            <p>봄과 지하세계를 잇는 여신</p>
+                            <span class="mytholog-story-more">DISCOVER STORY</span>
+                        </div>
+
+                    </button>
+                </article>
+
+
+                <!-- HERACLES -->
+                <article class="mytholog-story-card" data-category="heroes" data-story="heracles">
+                    <button type="button" class="mytholog-story-open" data-mytholog-story="heracles"
+                        aria-label="헤라클레스 이야기 보기">
+
+                        <div class="mytholog-story-image">
+                            <img src="image/artspace05.jpg" alt="헤라클레스 관련 작품">
+
+                            <span class="mytholog-story-index">03</span>
+                            <span class="mytholog-story-arrow">↗</span>
+                        </div>
+
+                        <div class="mytholog-story-info">
+                            <p class="mytholog-story-category">HEROES</p>
+                            <h3>헤라클레스</h3>
+                            <p>시련을 넘어선 위대한 영웅</p>
+                            <span class="mytholog-story-more">DISCOVER STORY</span>
+                        </div>
+
+                    </button>
+                </article>
+
+
+                <!-- MEDUSA -->
+                <article class="mytholog-story-card" data-category="monsters" data-story="medusa">
+                    <button type="button" class="mytholog-story-open" data-mytholog-story="medusa"
+                        aria-label="메두사 이야기 보기">
+
+                        <div class="mytholog-story-image">
+                            <img src="image/artspace06.jpg" alt="메두사 관련 작품">
+
+                            <span class="mytholog-story-index">04</span>
+                            <span class="mytholog-story-arrow">↗</span>
+                        </div>
+
+                        <div class="mytholog-story-info">
+                            <p class="mytholog-story-category">MONSTERS</p>
+                            <h3>메두사</h3>
+                            <p>시선에 저주를 품은 고르곤</p>
+                            <span class="mytholog-story-more">DISCOVER STORY</span>
+                        </div>
+
+                    </button>
+                </article>
+
+
+                <!-- NARCISSUS -->
+                <article class="mytholog-story-card" data-category="love" data-story="narcissus">
+                    <button type="button" class="mytholog-story-open" data-mytholog-story="narcissus"
+                        aria-label="나르키소스 이야기 보기">
+
+                        <div class="mytholog-story-image">
+                            <img src="image/artspace07.jpg" alt="나르키소스 관련 작품">
+
+                            <span class="mytholog-story-index">05</span>
+                            <span class="mytholog-story-arrow">↗</span>
+                        </div>
+
+                        <div class="mytholog-story-info">
+                            <p class="mytholog-story-category">LOVE & FATE</p>
+                            <h3>나르키소스</h3>
+                            <p>물에 비친 자신을 사랑한 인물</p>
+                            <span class="mytholog-story-more">DISCOVER STORY</span>
+                        </div>
+
+                    </button>
+                </article>
+
+
+                <!-- ODYSSEUS -->
+                <article class="mytholog-story-card" data-category="heroes" data-story="odysseus">
+                    <button type="button" class="mytholog-story-open" data-mytholog-story="odysseus"
+                        aria-label="오디세우스 이야기 보기">
+
+                        <div class="mytholog-story-image">
+                            <img src="image/artspace08.jpg" alt="오디세우스 관련 작품">
+
+                            <span class="mytholog-story-index">06</span>
+                            <span class="mytholog-story-arrow">↗</span>
+                        </div>
+
+                        <div class="mytholog-story-info">
+                            <p class="mytholog-story-category">HEROES</p>
+                            <h3>오디세우스</h3>
+                            <p>고향으로 돌아가기 위한 긴 여정</p>
+                            <span class="mytholog-story-more">DISCOVER STORY</span>
+                        </div>
+
+                    </button>
+                </article>
+
+            </div>
+
+
+            <!-- EMPTY STATE -->
+            <div class="mytholog-story-empty" id="mytholog-story-empty" hidden>
+                <p>해당 분류의 이야기가 없습니다.</p>
+
+                <button type="button" class="mytholog-reset-btn" id="mytholog-story-reset">
+                    VIEW ALL STORIES
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- DISCUSSION CTA -->
+        <section class="mytholog-discussion">
+
+            <div class="mytholog-discussion-inner">
+
+                <p>BEYOND THE MYTH</p>
+
+                <h2>
+                    신화는 끝나지 않습니다.
+                </h2>
+
+                <p>
+                    오래된 이야기를 감상하고, 당신만의 해석을 발견해 보세요.
+                </p>
+
+                <a href="community.html">
+                    JOIN THE DISCUSSION
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- STORY MODAL -->
+    <div class="mytholog-modal" id="mytholog-story-modal" role="dialog" aria-modal="true"
+        aria-labelledby="mytholog-modal-title" hidden>
+
+        <div class="mytholog-modal-content">
+
+            <button type="button" class="mytholog-modal-close" data-mytholog-close aria-label="모달 닫기">
+                &times;
+            </button>
+
+            <div class="mytholog-modal-image-wrap">
+                <img src="image/artspace03.jpg" alt="" id="mytholog-modal-image">
+            </div>
+
+            <div class="mytholog-modal-body">
+
+                <p id="mytholog-modal-number" class="mytholog-modal-number">
+                    01
+                </p>
+
+                <p id="mytholog-modal-category" class="mytholog-modal-category">
+                    OLYMPIAN GODS
+                </p>
+
+                <h2 id="mytholog-modal-title">제우스</h2>
+
+                <p id="mytholog-modal-subtitle" class="mytholog-modal-subtitle">
+                    ZEUS · 신들의 왕
+                </p>
+
+                <div id="mytholog-modal-story" class="mytholog-modal-story">
+                    <p>신화 이야기를 불러오는 중입니다.</p>
+                </div>
+
+                <div id="mytholog-modal-tags" class="mytholog-modal-tags"></div>
+
+                <button type="button" class="mytholog-modal-close-btn" data-mytholog-close>
+                    CLOSE
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <div id="common-footer"></div>
+
+</body>
+
+</html>

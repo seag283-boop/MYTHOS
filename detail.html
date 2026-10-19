@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>작품 상세 | MYTHOS</title>
+    <link rel="icon" type="image/svg+xml" href="image/icons/logo.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Serif+KR:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+
+    <style>
+        .detail-page {
+            width: calc(100% - 48px);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 140px 0 100px;
+        }
+
+        .detail-breadcrumb {
+            margin-bottom: 32px;
+            color: #777168;
+            font-size: 12px;
+        }
+
+        .detail-breadcrumb a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .detail-breadcrumb span {
+            margin: 0 8px;
+        }
+
+        .detail-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+            gap: 64px;
+            align-items: start;
+        }
+
+        .detail-image-wrap {
+            overflow: hidden;
+            background: #f1efeb;
+        }
+
+        .detail-image {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+        }
+
+        .detail-eyebrow {
+            margin-bottom: 16px;
+            color: #898276;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        .detail-title {
+            margin: 0 0 12px;
+            font-family: "Noto Serif KR", serif;
+            font-size: clamp(26px, 3vw, 38px);
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .detail-english-title {
+            margin-bottom: 14px;
+            color: #777168;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 20px;
+        }
+
+        .detail-artist {
+            margin-bottom: 28px;
+            color: #777168;
+            font-size: 13px;
+        }
+
+        .detail-divider {
+            height: 1px;
+            margin: 24px 0;
+            border: 0;
+            background: #e5e1d9;
+        }
+
+        .detail-price-label {
+            margin-bottom: 8px;
+            color: #777168;
+            font-size: 12px;
+        }
+
+        .detail-price {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .detail-price-unit {
+            margin-left: 4px;
+            color: #777168;
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 12px;
+        }
+
+        .detail-description {
+            margin-top: 24px;
+            color: #666159;
+            font-size: 13px;
+            line-height: 2;
+            white-space: pre-line;
+        }
+
+        .detail-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .detail-meta span {
+            padding: 7px 10px;
+            border: 1px solid #e5e1d9;
+            color: #777168;
+            font-size: 11px;
+        }
+
+        .detail-option-block {
+            margin-top: 22px;
+        }
+
+        .detail-option-label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .detail-select {
+            width: 100%;
+            min-height: 46px;
+            padding: 0 12px;
+            border: 1px solid #d8d5cf;
+            border-radius: 0;
+            background: #fff;
+            color: #292929;
+            font: inherit;
+            font-size: 12px;
+        }
+
+        .detail-quantity {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 22px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid #d8d5cf;
+        }
+
+        .quantity-controls button {
+            width: 36px;
+            height: 36px;
+            border: 0;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .quantity-controls output {
+            min-width: 32px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .detail-total {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .detail-total-label {
+            color: #777168;
+            font-size: 13px;
+        }
+
+        .detail-total-price {
+            font-size: 23px;
+            font-weight: 500;
+        }
+
+        .detail-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .detail-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 12px;
+            border: 1px solid #242424;
+            border-radius: 0;
+            background: #fff;
+            color: #242424;
+            font-family: inherit;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .detail-button:hover {
+            background: #f3f1ed;
+        }
+
+        .detail-button-primary {
+            background: #242424;
+            color: #fff;
+        }
+
+        .detail-button-primary:hover {
+            background: #444;
+            color: #fff;
+        }
+
+        .detail-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .detail-notice {
+            margin-top: 18px;
+            color: #888176;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .detail-message {
+            margin-top: 14px;
+            color: #555047;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .detail-back {
+            display: inline-block;
+            margin-top: 40px;
+            color: #625d54;
+            font-size: 12px;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .detail-page {
+                width: calc(100% - 36px);
+                padding: 110px 0 64px;
+            }
+
+            .detail-layout {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .detail-image {
+                aspect-ratio: 4 / 4.5;
+            }
+
+            .detail-title {
+                font-size: 28px;
+            }
+
+            .detail-price {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .detail-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js" defer></script>
+    <script src="js/common.js" defer></script>
+</head>
+
+<body>
+    <div id="common-header"></div>
+
+
+    <main class="detail-page">
+        <nav class="detail-breadcrumb" aria-label="현재 위치">
+            <a href="index.html">HOME</a>
+            <span>/</span>
+            <a href="artworks.html">ARTWORKS</a>
+            <span>/</span>
+            <span id="breadcrumb-title">DETAIL</span>
+        </nav>
+
+        <section class="detail-layout" aria-labelledby="detail-title">
+            <div class="detail-image-wrap">
+                <img class="detail-image" id="detail-image" src="image/artspace01.jpg" alt="작품 이미지">
+            </div>
+
+            <div class="detail-content">
+                <p class="detail-eyebrow">MYTHOS ART COLLECTION</p>
+
+                <h1 class="detail-title" id="detail-title">작품 정보를 불러오는 중입니다.</h1>
+                <p class="detail-english-title" id="detail-english-title"></p>
+                <p class="detail-artist" id="detail-artist"></p>
+
+                <hr class="detail-divider">
+
+                <p class="detail-price-label" id="detail-price-label">대여 가격</p>
+                <div>
+                    <strong class="detail-price" id="detail-price">-</strong>
+                    <span class="detail-price-unit" id="detail-price-unit">/ 일</span>
+                </div>
+
+                <p class="detail-description" id="detail-description"></p>
+                <div class="detail-meta" id="detail-meta"></div>
+
+                <hr class="detail-divider">
+
+                <div class="detail-option-block">
+                    <label class="detail-option-label" for="detail-action">이용 방법</label>
+                    <select class="detail-select" id="detail-action">
+                        <option value="rent">작품 대여</option>
+                        <option value="purchase">작품 구매</option>
+                    </select>
+                </div>
+
+                <div class="detail-option-block" id="rental-option-block">
+                    <label class="detail-option-label" for="detail-rental-period">대여 기간</label>
+                    <select class="detail-select" id="detail-rental-period">
+                        <option value="1">1일 대여</option>
+                        <option value="7">7일 대여</option>
+                        <option value="30">30일 대여</option>
+                    </select>
+                </div>
+
+                <div class="detail-option-block" id="purchase-option-block" hidden>
+                    <label class="detail-option-label" for="detail-purchase-option">구매 옵션</label>
+                    <select class="detail-select" id="detail-purchase-option">
+                        <option value="original">원화 작품 구매</option>
+                        <option value="print">프린트 작품 구매</option>
+                    </select>
+                </div>
+
+                <div class="detail-quantity">
+                    <label class="detail-option-label" for="detail-quantity">수량</label>
+                    <div class="quantity-controls">
+                        <button type="button" id="quantity-minus" aria-label="수량 줄이기">−</button>
+                        <output id="detail-quantity">1</output>
+                        <button type="button" id="quantity-plus" aria-label="수량 늘리기">+</button>
+                    </div>
+                </div>
+
+                <div class="detail-total">
+                    <span class="detail-total-label">예상 금액</span>
+                    <strong class="detail-total-price" id="detail-total">-</strong>
+                </div>
+
+                <div class="detail-actions">
+                    <button type="button" class="detail-button" id="detail-favorite" aria-pressed="false">
+                        관심 작품 ♡
+                    </button>
+                    <button type="button" class="detail-button detail-button-primary" id="detail-add-cart">
+                        장바구니 담기
+                    </button>
+                </div>
+
+                <p class="detail-message" id="detail-message" role="status" aria-live="polite"></p>
+
+                <p class="detail-notice">
+                    표시된 금액은 선택한 옵션을 기준으로 계산한 예상 금액입니다.
+                    실제 주문 및 결제 기능은 별도 연결이 필요합니다.
+                </p>
+            </div>
+        </section>
+
+        <a href="artworks.html" class="detail-back">← 작품 목록으로 돌아가기</a>
+    </main>
+    <div id="common-footer"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const params = new URLSearchParams(window.location.search);
+            const artworkId = params.get("id") || "MYTH-001";
+            const client = window.supabaseClient;
+
+            const titleEl = document.getElementById("detail-title");
+            const englishTitleEl = document.getElementById("detail-english-title");
+            const artistEl = document.getElementById("detail-artist");
+            const imageEl = document.getElementById("detail-image");
+            const descriptionEl = document.getElementById("detail-description");
+            const breadcrumbEl = document.getElementById("breadcrumb-title");
+            const metaEl = document.getElementById("detail-meta");
+
+            const actionSelect = document.getElementById("detail-action");
+            const rentalBlock = document.getElementById("rental-option-block");
+            const purchaseBlock = document.getElementById("purchase-option-block");
+            const rentalSelect = document.getElementById("detail-rental-period");
+            const purchaseSelect = document.getElementById("detail-purchase-option");
+
+            const quantityOutput = document.getElementById("detail-quantity");
+            const priceEl = document.getElementById("detail-price");
+            const priceLabel = document.getElementById("detail-price-label");
+            const priceUnit = document.getElementById("detail-price-unit");
+            const totalEl = document.getElementById("detail-total");
+
+            const messageEl = document.getElementById("detail-message");
+            const favoriteButton = document.getElementById("detail-favorite");
+            const cartButton = document.getElementById("detail-add-cart");
+
+            let artwork = null;
+            let quantity = 1;
+
+            function won(value) {
+                return new Intl.NumberFormat("ko-KR").format(value) + "원";
+            }
+
+            function escapeHTML(value) {
+                return String(value ?? "").replace(/[&<>"']/g, (char) => {
+                    const entities = {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#39;"
+                    };
+                    return entities[char];
+                });
+            }
+
+            async function loadArtwork() {
+                if (!client) {
+                    throw new Error("Supabase 클라이언트가 연결되지 않았습니다.");
+                }
+
+                const { data, error } = await client
+                    .from("MYTHOS_ART")
+                    .select("*")
+                    .eq("id", artworkId)
+                    .maybeSingle();
+
+                if (error) throw error;
+                if (!data) throw new Error("해당 작품을 찾을 수 없습니다.");
+
+                return data;
+            }
+
+            // Supabase의 이미지 파일명과 로컬 image 폴더 연결
+            function getImagePath(filename, id) {
+                if (filename) {
+                    const value = String(filename).trim();
+
+                    if (/^https?:\/\//i.test(value)) {
+                        return value;
+                    }
+
+                    const cleanPath = value
+                        .replace(/^\.\//, "")
+                        .replace(/^\/+/, "");
+
+                    return cleanPath.startsWith("image/")
+                        ? cleanPath
+                        : `image/${cleanPath}`;
+                }
+
+                const match = String(id || "").match(/MYTH-(\d+)/i);
+
+                if (match) {
+                    const number = Number(match[1]);
+
+                    if (number >= 1 && number <= 20) {
+                        return `image/artspace${String(number).padStart(2, "0")}.jpg`;
+                    }
+                }
+
+                return "image/artspace01.jpg";
+            }
+
+            function renderArtwork() {
+                titleEl.textContent = artwork.title_ko || "제목 없음";
+                englishTitleEl.textContent = artwork.title_en || "";
+                artistEl.textContent = artwork.artist || "작가 정보 없음";
+                descriptionEl.textContent = artwork.description || "작품 설명이 등록되지 않았습니다.";
+                breadcrumbEl.textContent = artwork.title_ko || artwork.id;
+
+                imageEl.onerror = () => {
+                    imageEl.onerror = null;
+
+                    const match = String(artwork.id || "").match(/MYTH-(\d+)/i);
+                    const number = match ? Number(match[1]) : 1;
+
+                    imageEl.src = number >= 1 && number <= 20
+                        ? `image/artspace${String(number).padStart(2, "0")}.jpg`
+                        : "image/artspace01.jpg";
+                };
+
+                imageEl.src = getImagePath(artwork.image_filename, artwork.id);
+                imageEl.alt = artwork.title_ko || "작품 이미지";
+
+                metaEl.innerHTML = `
+                    ${artwork.theme ? `<span>${escapeHTML(artwork.theme)}</span>` : ""}
+                    ${artwork.myth_subject ? `<span>${escapeHTML(artwork.myth_subject)}</span>` : ""}
+                    ${artwork.created_year ? `<span>${escapeHTML(artwork.created_year)}년</span>` : ""}
+                `;
+
+                document.title = `${artwork.title_ko || "작품 상세"} | MYTHOS`;
+
+                const canRent = artwork.available_for_rent === true;
+                const canPurchase = artwork.available_for_purchase === true;
+
+                for (const option of actionSelect.options) {
+                    if (option.value === "rent") option.disabled = !canRent;
+                    if (option.value === "purchase") option.disabled = !canPurchase;
+                }
+
+                if (canRent) {
+                    actionSelect.value = "rent";
+                } else if (canPurchase) {
+                    actionSelect.value = "purchase";
+                }
+
+                if (!canRent && !canPurchase) {
+                    actionSelect.disabled = true;
+                    cartButton.disabled = true;
+                    messageEl.textContent = "현재 대여 및 구매가 불가능한 작품입니다.";
+                }
+
+                updatePrice();
+            }
+
+            function getUnitPrice() {
+                if (!artwork) return 0;
+
+                if (actionSelect.value === "rent") {
+                    return Number(artwork.rental_price_per_day_krw || 0)
+                        * Number(rentalSelect.value);
+                }
+
+                return Number(artwork.purchase_price_krw || 0);
+            }
+
+            function updatePrice() {
+                if (!artwork) return;
+
+                const isRental = actionSelect.value === "rent";
+                const unitPrice = getUnitPrice();
+
+                rentalBlock.hidden = !isRental;
+                purchaseBlock.hidden = isRental;
+
+                if (isRental) {
+                    priceLabel.textContent = "대여 가격";
+                    priceEl.textContent = won(Number(artwork.rental_price_per_day_krw || 0));
+                    priceUnit.textContent = "/ 일";
+                } else {
+                    priceLabel.textContent = "구매 가격";
+                    priceEl.textContent = won(Number(artwork.purchase_price_krw || 0));
+                    priceUnit.textContent = "";
+                }
+
+                totalEl.textContent = won(unitPrice * quantity);
+                messageEl.textContent = "";
+            }
+
+            actionSelect.addEventListener("change", updatePrice);
+            rentalSelect.addEventListener("change", updatePrice);
+            purchaseSelect.addEventListener("change", updatePrice);
+
+            document.getElementById("quantity-minus").addEventListener("click", () => {
+                quantity = Math.max(1, quantity - 1);
+                quantityOutput.textContent = quantity;
+                updatePrice();
+            });
+
+            document.getElementById("quantity-plus").addEventListener("click", () => {
+                quantity = Math.min(99, quantity + 1);
+                quantityOutput.textContent = quantity;
+                updatePrice();
+            });
+
+            // 장바구니에 작품 추가
+            cartButton.addEventListener("click", () => {
+                if (!artwork) return;
+
+                const action = actionSelect.value;
+
+                if (action === "rent" && artwork.available_for_rent !== true) {
+                    messageEl.textContent = "현재 대여할 수 없는 작품입니다.";
+                    return;
+                }
+
+                if (action === "purchase" && artwork.available_for_purchase !== true) {
+                    messageEl.textContent = "현재 구매할 수 없는 작품입니다.";
+                    return;
+                }
+
+                const option = action === "rent"
+                    ? rentalSelect.value
+                    : purchaseSelect.value;
+
+                const unitPrice = getUnitPrice();
+
+                const item = {
+                    id: artwork.id,
+                    title: artwork.title_ko,
+                    title_en: artwork.title_en,
+                    artist: artwork.artist,
+                    image: getImagePath(artwork.image_filename, artwork.id),
+                    theme: artwork.theme,
+                    action,
+                    option,
+                    quantity,
+                    unitPrice,
+                    totalPrice: unitPrice * quantity
+                };
+
+                let cart = [];
+
+                try {
+                    cart = JSON.parse(localStorage.getItem("mythosCart") || "[]");
+                    if (!Array.isArray(cart)) cart = [];
+                } catch (error) {
+                    cart = [];
+                }
+
+                const existingItem = cart.find((cartItem) =>
+                    cartItem.id === item.id &&
+                    cartItem.action === item.action &&
+                    cartItem.option === item.option
+                );
+
+                if (existingItem) {
+                    existingItem.quantity = Number(existingItem.quantity || 0) + quantity;
+                    existingItem.unitPrice = unitPrice;
+                    existingItem.totalPrice = existingItem.quantity * unitPrice;
+                    existingItem.image = item.image;
+                    existingItem.title = item.title;
+                    existingItem.artist = item.artist;
+                } else {
+                    cart.push(item);
+                }
+
+                localStorage.setItem("mythosCart", JSON.stringify(cart));
+
+                messageEl.textContent =
+                    "장바구니에 담았습니다. 장바구니 페이지에서 확인해 주세요.";
+            });
+
+            async function checkFavorite() {
+                if (!client) return;
+
+                try {
+                    const {
+                        data: { user },
+                        error: authError
+                    } = await client.auth.getUser();
+
+                    if (authError) throw authError;
+
+                    if (!user) {
+                        favoriteButton.textContent = "관심 작품 ♡";
+                        favoriteButton.setAttribute("aria-pressed", "false");
+                        return;
+                    }
+
+                    const { data, error } = await client
+                        .from("MYTHOS_FAVORITES")
+                        .select("artwork_id")
+                        .eq("user_id", user.id)
+                        .eq("artwork_id", artworkId)
+                        .maybeSingle();
+
+                    if (error) throw error;
+
+                    favoriteButton.textContent = data ? "관심 작품 ♥" : "관심 작품 ♡";
+                    favoriteButton.setAttribute("aria-pressed", String(Boolean(data)));
+                } catch (error) {
+                    console.error("관심 작품 확인 오류:", error);
+                }
+            }
+
+            favoriteButton.addEventListener("click", async () => {
+                if (!client) {
+                    messageEl.textContent = "Supabase 연결을 확인해 주세요.";
+                    return;
+                }
+
+                favoriteButton.disabled = true;
+
+                try {
+                    const {
+                        data: { user },
+                        error: authError
+                    } = await client.auth.getUser();
+
+                    if (authError) throw authError;
+
+                    if (!user) {
+                        messageEl.textContent = "관심 작품을 저장하려면 로그인이 필요합니다.";
+                        return;
+                    }
+
+                    const { data: existing, error: checkError } = await client
+                        .from("MYTHOS_FAVORITES")
+                        .select("artwork_id")
+                        .eq("user_id", user.id)
+                        .eq("artwork_id", artworkId)
+                        .maybeSingle();
+
+                    if (checkError) throw checkError;
+
+                    if (existing) {
+                        const { error: deleteError } = await client
+                            .from("MYTHOS_FAVORITES")
+                            .delete()
+                            .eq("user_id", user.id)
+                            .eq("artwork_id", artworkId);
+
+                        if (deleteError) throw deleteError;
+
+                        favoriteButton.textContent = "관심 작품 ♡";
+                        favoriteButton.setAttribute("aria-pressed", "false");
+                        messageEl.textContent = "관심 작품에서 제거했습니다.";
+                    } else {
+                        const { error: insertError } = await client
+                            .from("MYTHOS_FAVORITES")
+                            .insert({
+                                user_id: user.id,
+                                artwork_id: artworkId
+                            });
+
+                        if (insertError) throw insertError;
+
+                        favoriteButton.textContent = "관심 작품 ♥";
+                        favoriteButton.setAttribute("aria-pressed", "true");
+                        messageEl.textContent = "관심 작품에 추가했습니다.";
+                    }
+                } catch (error) {
+                    console.error("관심 작품 처리 오류:", error);
+                    messageEl.textContent =
+                        "관심 작품 처리에 실패했습니다. Supabase 설정을 확인해 주세요.";
+                } finally {
+                    favoriteButton.disabled = false;
+                }
+            });
+
+            try {
+                artwork = await loadArtwork();
+                renderArtwork();
+                await checkFavorite();
+            } catch (error) {
+                console.error("작품 정보 조회 오류:", error);
+
+                titleEl.textContent = "작품 정보를 불러올 수 없습니다.";
+                descriptionEl.textContent =
+                    "작품 ID, Supabase 연결 및 테이블 조회 권한을 확인해 주세요.";
+
+                messageEl.textContent = error.message || "알 수 없는 오류가 발생했습니다.";
+
+                cartButton.disabled = true;
+                favoriteButton.disabled = true;
+            }
+        });
+    </script>
+</body>
+
+</html>

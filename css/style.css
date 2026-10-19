@@ -1,0 +1,109 @@
+@charset "utf-8";
+@import url(./fonts.css);
+@import url(./reset.css);
+
+:root {
+    --ink: #22221f;
+    --muted: #77766e;
+    --paper: #f8f7f3;
+    --line: #e5e3dc;
+    --accent: #66715b;
+
+}
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+.btn {
+    cursor: pointer;
+    background: var(--ink);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: wait;
+}
+
+.container {
+    width: min(1100px, calc(100% - 40px));
+    margin: auto;
+}
+
+/* header */
+.header {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    min-height: 80px;
+}
+
+.logo {
+    font-family: 'MaruBuri', serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.gnb {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.gnb a:hover {
+    text-decoration: underline;
+}
+
+.muted,
+.sub-title {
+    color: var(--muted);
+}
+
+.sub-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* hero */
+.hero {
+    background: linear-gradient(90deg, rgba(0, 0, 0, .52), rgba(0, 0, 0, .12)), url('https://images.unsplash.com/photo-1776589583184-fb551069927d?q=80') center/cover;
+    min-height: 520px;
+    color: white;
+    display: flex;
+    align-items: center
+}
+
+.hero h1 {
+    font: normal 800 clamp(38px, 6vw, 68px)/1.2 'MaruBuri', serif;
+    max-width: 700px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    max-width: 500px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}

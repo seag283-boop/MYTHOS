@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MYTHOS | COMMUNITY</title>
+    <link rel="icon" type="image/svg+xml" href="image/icons/logo.svg">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/community.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js" defer></script>
+    <script src="js/common.js" defer></script>
+    <script src="js/community-page.js" defer></script>
+</head>
+
+<body class="community-page">
+
+    <!-- HEADER -->
+    <div id="common-header"></div>
+
+    <main>
+
+        <!-- COMMUNITY HERO -->
+        <section class="community-hero">
+            <div class="hero-shade"></div>
+
+            <div class="hero-content">
+                <p class="eyebrow">MYTHOS · COMMUNITY</p>
+
+                <h1>
+                    ARTS, MYTHS<br>
+                    <em>&amp; YOUR STORIES.</em>
+                </h1>
+
+                <p>
+                    예술과 신화를 사랑하는 사람들의 공간.<br>
+                    작품을 바라보는 다양한 시선과 이야기를 만나보세요.
+                </p>
+
+                <a href="#community-content">
+                    EXPLORE COMMUNITY <span>↘</span>
+                </a>
+            </div>
+
+            <small class="hero-index">
+                A SPACE FOR SHARED STORIES / 01
+            </small>
+        </section>
+
+
+        <!-- INTRODUCTION -->
+        <section class="community-intro section-pad">
+            <p class="kicker">01　A PLACE TO CONNECT</p>
+
+            <div class="intro-grid">
+                <h2>
+                    예술을 나누고,<br>
+                    <em>시선을 연결하다.</em>
+                </h2>
+
+                <div class="intro-description">
+                    <p>
+                        하나의 작품도 사람마다 다르게 기억됩니다.
+                        누군가는 색을, 누군가는 이야기를,
+                        또 다른 누군가는 작품 속 감정을 발견합니다.
+                    </p>
+
+                    <p>
+                        MYTHOS에서 작품 감상과 신화에 관한 생각을
+                        나누고, 새로운 관점을 발견해 보세요.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- COMMUNITY CONTENT -->
+        <section class="community-content section-pad" id="community-content">
+
+            <div class="section-heading">
+                <div>
+                    <p class="kicker">02　COMMUNITY STORIES</p>
+                    <h2>사람들의 <em>이야기</em></h2>
+                    <p>
+                        작품과 신화에 관한 다양한 생각을 만나보세요.
+                    </p>
+                </div>
+
+                <a href="#community-board" class="view-all">
+                    VIEW ALL <span>↗</span>
+                </a>
+            </div>
+
+
+            <!-- FEATURED TOPICS -->
+            <div class="topic-grid">
+
+                <a href="#community-board" class="topic-card topic-artwork">
+
+                    <div class="topic-number">01</div>
+
+                    <div class="topic-info">
+                        <span>ART APPRECIATION</span>
+                        <h3>작품 감상</h3>
+                        <p>
+                            마음에 남은 작품과 그 이유를 나눠보세요.
+                        </p>
+                    </div>
+
+                    <span class="topic-arrow">↗</span>
+                </a>
+
+
+                <a href="#community-board" class="topic-card topic-myth">
+
+                    <div class="topic-number">02</div>
+
+                    <div class="topic-info">
+                        <span>GREEK MYTHOLOGY</span>
+                        <h3>신화 이야기</h3>
+                        <p>
+                            흥미로운 신화와 인물에 관한 이야기를 만나보세요.
+                        </p>
+                    </div>
+
+                    <span class="topic-arrow">↗</span>
+                </a>
+
+
+                <a href="#community-board" class="topic-card topic-exhibition">
+
+                    <div class="topic-number">03</div>
+
+                    <div class="topic-info">
+                        <span>EXHIBITION & CULTURE</span>
+                        <h3>전시와 문화</h3>
+                        <p>
+                            전시 경험과 예술에 관한 정보를 공유해 보세요.
+                        </p>
+                    </div>
+
+                    <span class="topic-arrow">↗</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- COMMUNITY BOARD -->
+        <section class="community-board section-pad" id="community-board">
+
+            <div class="section-heading">
+                <div>
+                    <p class="kicker">03　LATEST STORIES</p>
+                    <h2>COMMUNITY <em>BOARD</em></h2>
+                    <p>
+                        지금 MYTHOS에서 나누고 있는 이야기입니다.
+                    </p>
+                </div>
+
+                <button type="button" class="write-button" id="open-write">
+                    이야기 남기기 <span>＋</span>
+                </button>
+            </div>
+
+
+            <!-- CATEGORY FILTER -->
+            <div class="board-tools">
+
+                <div class="category-tabs">
+                    <button class="tab active" data-category="전체">전체</button>
+
+                    <button class="tab" data-category="작품 감상">작품 감상</button>
+
+                    <button class="tab" data-category="신화 이야기">신화 이야기</button>
+
+                    <button class="tab" data-category="전시와 문화">전시와 문화</button>
+
+                    <button class="tab" data-category="자유 이야기">자유 이야기</button>
+                </div>
+
+                <label class="search-box">
+                    <input type="search" id="post-search" placeholder="이야기 검색">
+
+                    <button type="button" id="search-button" aria-label="검색">⌕</button>
+                </label>
+
+            </div>
+
+
+            <!-- POST LIST -->
+            <div class="board-list-header">
+                <span>STORIES FROM MYTHOS</span>
+                <span>POSTS <b id="post-count">00</b></span>
+            </div>
+
+            <div id="post-list">
+                <p class="loading">이야기를 불러오는 중입니다.</p>
+            </div>
+
+
+            <!-- EMPTY STATE -->
+            <div class="empty-state" id="empty-state" hidden>
+                <span class="empty-symbol">M.</span>
+                <h3>아직 등록된 이야기가 없습니다.</h3>
+                <p>첫 번째 이야기를 만나보세요.</p>
+            </div>
+
+            <p class="board-notice" id="board-notice" role="status"></p>
+
+        </section>
+
+
+        <!-- BOTTOM BANNER -->
+        <section class="community-banner">
+            <p>ART · MYTH · PEOPLE</p>
+
+            <h2>
+                Every story has<br>
+                <em>another perspective.</em>
+            </h2>
+
+            <a href="#community-board">
+                DISCOVER STORIES ↗
+            </a>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <div id="common-footer"></div>
+
+
+    <!-- WRITE MODAL -->
+    <div class="modal" id="post-modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading" hidden>
+
+        <div class="modal-backdrop" data-close></div>
+
+        <section class="modal-panel">
+
+            <button type="button" class="modal-close" data-close aria-label="닫기">×</button>
+
+            <p class="kicker">SHARE YOUR STORY</p>
+            <h2 id="modal-heading">이야기 남기기</h2>
+
+            <form id="post-form">
+
+                <label>
+                    카테고리
+                    <select id="post-category">
+                        <option>작품 감상</option>
+                        <option>신화 이야기</option>
+                        <option>전시와 문화</option>
+                        <option>자유 이야기</option>
+                    </select>
+                </label>
+
+                <label>
+                    닉네임
+                    <input type="text" id="post-author" maxlength="30" required placeholder="닉네임을 입력하세요.">
+                </label>
+
+                <label>
+                    제목
+                    <input type="text" id="post-title" maxlength="100" required placeholder="제목을 입력하세요.">
+                </label>
+
+                <label>
+                    내용
+                    <textarea id="post-content" rows="7" maxlength="5000" required
+                        placeholder="나누고 싶은 이야기를 작성해 주세요."></textarea>
+                </label>
+
+                <div class="modal-actions">
+                    <button type="button" class="cancel-button" data-close>
+                        취소
+                    </button>
+
+                    <button type="submit" class="submit-button" id="submit-post">
+                        등록하기
+                    </button>
+                </div>
+
+            </form>
+
+
+            <!-- POST DETAIL -->
+            <article id="post-detail" hidden>
+
+                <div class="detail-meta">
+                    <span id="detail-category"></span>
+                    <time id="detail-date"></time>
+                </div>
+
+                <h3 id="detail-title"></h3>
+                <p id="detail-author"></p>
+
+                <div id="detail-content"></div>
+
+                <section class="comments">
+                    <h3>
+                        댓글 <span id="comment-count">0</span>
+                    </h3>
+
+                    <div id="comment-list"></div>
+
+                    <form id="comment-form">
+                        <input type="text" id="comment-author" maxlength="30" required placeholder="닉네임"
+                            aria-label="댓글 작성자">
+
+                        <input type="text" id="comment-content" maxlength="1000" required placeholder="댓글을 입력하세요."
+                            aria-label="댓글 내용">
+
+                        <button type="submit" id="submit-comment">등록</button>
+                    </form>
+                </section>
+
+            </article>
+
+            <p id="modal-message" role="status"></p>
+
+        </section>
+    </div>
+
+</body>
+
+</html>

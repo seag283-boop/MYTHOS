@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>작품 보기 | MYTHOS</title>
+    <link rel="icon" type="image/svg+xml" href="image/icons/logo.svg">
+    <meta name="description" content="그리스 신화에서 영감을 받은 MYTHOS의 예술 작품을 만나보세요.">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Serif+KR:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/subpages.css">
+    <link rel="stylesheet" href="css/artworks.css">
+
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JAVASCRIPT -->
+    <script src="js/supabase.js" defer></script>
+    <script src="js/common.js" defer></script>
+    <script src="js/artworks-page.js" defer></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div id="common-header"></div>
+
+
+    <!-- MAIN -->
+    <main class="subpage artworks-page">
+
+        <!-- HERO -->
+        <section class="subpage-hero artworks-hero">
+            <div class="subpage-hero-inner">
+
+                <p class="subpage-eyebrow">
+                    MYTHOS COLLECTION
+                </p>
+
+                <h1>
+                    Artworks
+                    <span>신화 속 이야기를 담은 작품</span>
+                </h1>
+
+                <p class="subpage-description">
+                    신과 영웅, 사랑과 운명의 순간을 담은 예술 작품을 만나보세요.
+                    당신의 공간에 어울리는 작품을 발견할 수 있습니다.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ARTWORK COLLECTION -->
+        <section class="collection-section">
+            <div class="collection-inner">
+
+                <!-- SECTION TITLE -->
+                <div class="collection-heading">
+
+                    <div class="collection-title">
+                        <p class="subpage-eyebrow">
+                            CURATED COLLECTION
+                        </p>
+
+                        <h2>전체 작품</h2>
+
+                        <p class="collection-description">
+                            MYTHOS가 선정한 그리스 신화 예술 컬렉션입니다.
+                        </p>
+                    </div>
+
+                    <p class="artwork-count" id="artwork-count" aria-live="polite">
+                        작품을 불러오는 중입니다.
+                    </p>
+
+                </div>
+
+
+                <!-- FILTER AND SORT -->
+                <!-- FILTER AND SORT -->
+                <div class="collection-controls">
+
+                    <!-- CATEGORY FILTER -->
+                    <div class="filter-group" aria-label="신화 주제 필터">
+                        <button type="button" class="filter-btn active" data-theme="all" aria-pressed="true">
+                            전체 작품
+                        </button>
+
+                        <button type="button" class="filter-btn" data-theme="신과 여신" aria-pressed="false">
+                            신과 여신
+                        </button>
+
+                        <button type="button" class="filter-btn" data-theme="영웅과 전설" aria-pressed="false">
+                            영웅과 전설
+                        </button>
+
+                        <button type="button" class="filter-btn" data-theme="사랑과 비극" aria-pressed="false">
+                            사랑과 비극
+                        </button>
+
+                        <button type="button" class="filter-btn" data-theme="괴물과 환상" aria-pressed="false">
+                            괴물과 환상
+                        </button>
+
+                        <button type="button" class="filter-btn" data-theme="자연과 세계" aria-pressed="false">
+                            자연과 세계
+                        </button>
+                    </div>
+
+                    <!-- SORT -->
+                    <div class="sort-control">
+                        <label for="artwork-sort">정렬</label>
+
+                        <select id="artwork-sort">
+                            <option value="default">기본순</option>
+                            <option value="title">작품명순</option>
+                            <option value="year-asc">제작 연도순</option>
+                            <option value="year-desc">최신 제작 연도순</option>
+                            <option value="rental-price-asc">대여료 낮은순</option>
+                            <option value="price-asc">구매가 낮은순</option>
+                            <option value="price-desc">구매가 높은순</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- ARTWORK LIST -->
+                <div class="artwork-grid" id="artwork-list" aria-live="polite">
+                    <div class="artwork-loading">
+                        작품을 불러오고 있습니다.
+                    </div>
+                </div>
+
+
+                <!-- EMPTY STATE -->
+                <div class="artwork-empty" id="artwork-empty" hidden>
+                    <p class="empty-title">
+                        작품을 찾을 수 없습니다.
+                    </p>
+
+                    <p class="empty-description">
+                        다른 주제를 선택하거나 전체 작품을 확인해 주세요.
+                    </p>
+
+                    <button type="button" id="reset-filter" class="btn-outline">
+                        전체 작품 보기
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- MYTHOLOGY BANNER -->
+        <section class="collection-banner">
+            <div class="collection-banner-inner">
+
+                <p class="subpage-eyebrow">
+                    STORIES BEHIND ART
+                </p>
+
+                <h2>
+                    작품 속에 숨겨진<br>
+                    신화의 이야기를 만나보세요.
+                </h2>
+
+                <p class="collection-banner-description">
+                    작품에 담긴 신화와 인물들의 이야기를 알아보세요.
+                </p>
+
+                <a href="mythology.html" class="btn-primary">
+                    신화 이야기 보기
+                    <span aria-hidden="true">→</span>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <div id="common-footer"></div>
+
+</body>
+
+</html>
